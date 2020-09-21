@@ -181,6 +181,18 @@ trait FileHandler
 
         foreach ($rewrites as $file => $name) {
             $filename = str_replace($bindings[0], $bindings[1], $name);
+            
+            /* FIX: Adding 30 sec timeout, wait for file to exist before renaming */
+            $start_time = time();
+            while(true) {
+                if(file_exists($this->packagePath().'/'.$file) || ((time() - $start_time) > 30))
+                {
+                    usleep(500000);
+                    break;
+                }
+            }
+            /* End */
+            
             rename($this->packagePath().'/'.$file, $this->packagePath().'/'.$filename);
         }
     }
