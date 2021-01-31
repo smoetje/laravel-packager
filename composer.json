@@ -1,5 +1,5 @@
 {
-    "name": "jeroen-g/laravel-packager",
+    "name": "smoetje/laravel-packager",
     "description": "A cli tool for creating Laravel packages.",
     "keywords": [
         "Packager",
